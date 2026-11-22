@@ -20,9 +20,10 @@ jobs:
           gradle-version: '8.7'
 
       - name: Build debug APK
+        working-directory: .github/workflows
         run: gradle assembleDebug
 
       - uses: actions/upload-artifact@v4
         with:
           name: puzzle-apk
-          path: app/build/outputs/apk/debug/*.apk
+          path: .github/workflows/app/build/outputs/apk/debug/*.apk
