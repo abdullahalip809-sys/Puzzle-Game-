@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Puzzle Master</string>
+    <string name="subtitle">टाइल्स को सही क्रम में लगाओ</string>
+    <string name="level_easy">आसान 3×3</string>
+    <string name="level_medium">मध्यम 4×4</string>
+    <string name="level_hard">कठिन 5×5</string>
+    <string name="moves">चालें: %1$d</string>
+    <string name="time">समय: %1$s</string>
+    <string name="shuffle">नया गेम / Shuffle</string>
+    <string name="win_title">शाबाश! 🎉</string>
+    <string name="win_msg">आपने %1$d चालों में %2$s में puzzle हल किया।\nसबसे अच्छा: %3$d चालें</string>
+    <string name="play_again">फिर से खेलें</string>
+    <string name="menu">मेनू</string>
+</resources>
