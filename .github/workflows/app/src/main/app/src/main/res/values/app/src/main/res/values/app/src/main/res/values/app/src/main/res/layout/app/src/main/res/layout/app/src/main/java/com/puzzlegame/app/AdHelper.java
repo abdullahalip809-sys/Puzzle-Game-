@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
@@ -23,8 +22,6 @@ public class AdHelper {
     private static InterstitialAd interstitial;
 
     public static void loadBanner(AdView adView) {
-        adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId(BANNER_ID);
         adView.loadAd(new AdRequest.Builder().build());
     }
 
