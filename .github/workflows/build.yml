@@ -19,11 +19,25 @@ jobs:
         with:
           gradle-version: '8.7'
 
-      - name: Build debug APK
-        working-directory: .github/workflows
-        run: gradle assembleDebug
+      - name: Arrange files and build
+        run: |
+          P=/home/runner/proj
+          mkdir -p $P/app/src/main/res/values $P/app/src/main/res/layout $P/app/src/main/java/com/puzzlegame/app
+          cd .github/workflows
+          get() { r=$(find . -type f -name "$1" | head -n 1); [ -z "$r" ] && echo "MISSING: $1" >&2; echo "$r"; }
+          cp "$(get settings.gradle)" $P/settings.gradle
+          cp "$(get gradle.properties)" $P/gradle.properties
+          for g in $(find . -type f -name build.gradle); do
+            if grep -q namespace "$g"; then cp "$g" $P/app/build.gradle; else cp "$g" $P/build.gradle; fi
+          done
+          cp "$(get AndroidManifest.xml)" $P/app/src/main/AndroidManifest.xml
+          for n in strings colors themes; do cp "$(get $n.xml)" $P/app/src/main/res/values/; done
+          for n in activity_main activity_game; do cp "$(get $n.xml)" $P/app/src/main/res/layout/; done
+          for n in AdHelper MainActivity GameActivity; do cp "$(get $n.java)" $P/app/src/main/java/com/puzzlegame/app/; done
+          cd $P
+          gradle assembleDebug
 
       - uses: actions/upload-artifact@v4
         with:
           name: puzzle-apk
-          path: .github/workflows/app/build/outputs/apk/debug/*.apk
+          path: /home/runner/proj/app/build/outputs/apk/debug/*.apk
